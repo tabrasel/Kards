@@ -1,0 +1,195 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+header {
+    width: 100vw;
+    height: 8vh;
+    background-color: DarkSeaGreen;
+    box-shadow: Gray 0px 3px 8px;
+    font-size: 3.5vh;
+}
+
+header h1 {
+    color: White;
+}
+
+body {
+    background-color: WhiteSmoke;;
+    font-family: sans-serif;
+}
+
+#card-area {
+     width: 100vw;
+     height: 80vh;
+     display: flex;
+     flex-direction: row;
+     justify-content: center;
+     align-items: center;
+}
+
+#card {
+    width: calc(75vh * 0.8);
+    height: 75vh;
+    -webkit-box-sizing: border-box;
+}
+
+#card-side-front {
+    display: flex;
+    flex-direction: column;
+    width: inherit;
+    height: inherit;
+    padding: 0% 0%;
+    overflow: auto;
+    background-color: White;
+    font-size: 2.5vh;
+    color: Black;
+    border-radius: 2vw;
+    box-shadow: Gray 0px 3px 8px;
+    -webkit-box-sizing: border-box;
+    /*
+    -webkit-scrollbar-display: none;
+    */
+}
+
+#card-side-front::-webkit-scrollbar {
+  display: none;
+}
+
+#grade-buttons-area {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+}
+
+#card-prompt-area {
+    text-align: center;
+    margin-top: 3%;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+#card-prompt-area p {
+    margin: 1.5vh 0vh;
+    font-size: 3vh;
+}
+
+#card-activity-area {
+    width: 100%;
+}
+
+.drawing-activity-area {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+}
+
+#canvas-and-tools-area {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 2% 0%;
+}
+
+#drawing-canvas {
+    border: 0.2vh solid #BBB;
+    border-radius: 1vh;
+    outline: none;
+    cursor: crosshair;
+    margin-left: 4vh;
+}
+
+#drawing-tools-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    flex: 1 1 auto;
+}
+
+.drawing-button {
+    width: 14vh;
+    height: 6vh;
+    padding: 0px 0px;
+    border: none;
+    border-radius: 1vw;
+    color: White;
+    text-align: center;
+    font-size: 2.5vh;
+    text-decoration: none;
+}
+
+#drawing-undo-button {
+    background-color: DarkSalmon;
+}
+
+#drawing-undo-button:hover {
+    background-color: IndianRed;
+}
+
+#drawing-clear-button {
+    background-color: DarkSalmon;
+}
+
+#drawing-clear-button:hover {
+    background-color: IndianRed;
+}
+
+#drawing-search-button {
+    background-color: DarkSeaGreen;
+}
+
+#drawing-search-button:hover {
+    background-color: SeaGreen;
+}
+
+#check-button {
+    width: 65vh;
+    height: 8vh;
+    padding: 15px 32px;
+    border: none;
+    border-radius: 1vw;
+    background-color: #AAA;
+    color: White;
+    text-align: center;
+    font-size: 3.5vh;
+    text-decoration: none;
+}
+
+#check-button:hover {
+    background-color: #999;
+}
+
+#choices-area {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    flex: 1 1 auto;
+    margin-bottom: 3%;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+.choice-card {
+    width: 9vh;
+    height: 6vh;
+    margin: 0.5vh;
+    text-align: center;
+    font-size: 3.5vh;
+    color: #BBB;
+    background-color: White;
+    border: 0.2vh solid #BBB;
+    border-radius: 1vh;
+    cursor: pointer;
+}
+
+.choice-card:hover {
+    background-color: #EEE;
+}
