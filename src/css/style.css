@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 * {
     margin: 0px;
     padding: 0px;
@@ -5,20 +7,117 @@
 
 body {
     background-color: #c2d2b5;
-    font-family: sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 main {
-    width: 720px;
-    height: 100%;
+    width: 500px;
     margin: auto;
-    padding: 0px 100px;
+    padding: 0px 80px;
     background-color: white;
+    box-shadow: #A2AE99 0px 0px 15px;
 }
 
-#char-and-data {
-    width:
+hr {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    border-top: 1px solid #8e8e8e;
+    border-bottom: none;
+}
+
+#char-and-stats {
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+#char-div {
+    font-size: 175px;
+    vertical-align: text-top;
+}
+
+#stats-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 45%;
+    color: #8e8e8e;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    font-size: 20px;
+}
+
+#stats-table {
+    width: 100%;
+}
+
+#mr-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0px 15px;
+    color: #8e8e8e;
+    font-size: 24px;
+}
+
+#mr-table ul {
+    list-style: none;
+    color: black;
+}
+
+#mr-table li {
+    display: inline-block;
+    padding: 6px;
+    border-radius: 12px;
+}
+
+#meaning-value li {
+    background-color: #FFEBA5;
+}
+
+#onyomi-value li {
+    background-color: #FFCAC7;
+}
+
+#kunyomi-value li {
+    background-color: #B8E5FF;
+}
+
+#words h1 {
+    text-align: center;
+    color: #8e8e8e;
+    margin-bottom: 15px;
+}
+
+#words th, td {
+    font-size: 20px;
+}
+
+#words-table {
+    width: 85%;
+    margin: auto;
+    border-collapse: separate;
+    border-spacing: 0px 20px;
+}
+
+#words-table th, #words-table td {
+    font-size: 20px;
+    /*border: 1px solid black;*/
+    vertical-align: top;
+}
+
+#words-table th {
+    width: 30%;
+}
+
+th {
+    text-align: left;
+}
+
+td {
+    text-align: right;
+}
+
+ruby {
+    font-weight: normal;
 }

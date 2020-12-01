@@ -3,7 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
+        <meta http-equiv="Content-Security-Policy" content="style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;">
+
         <title>Kards</title>
         <link rel="stylesheet" href="../css/style.css">
 
@@ -13,17 +14,120 @@
         </nav>
 
         <main>
-            <div id="char-and-data">
-                <p>小</p>
-            </div>
+            <section id="char-and-stats">
+                <div id="char-div">
+                    <p id="kanji-char"></p>
+                </div>
+                <div id="stats-div">
+                    <table id="stats-table">
+                        <tr>
+                            <th>Grade</th>
+                            <td id="grade-value"></td>
+                        </tr>
+                        <tr>
+                            <th>JLPT</th>
+                            <td id="jlpt-value"></td>
+                        </tr>
+                        <tr>
+                            <th>Strokes</th>
+                            <td id="strokes-value"></td>
+                        </tr>
+                    </table>
 
-            <div id="meaning-and-readings">
+                    <table id="data-table">
+                        <tr>
+                            <th>Level</th>
+                            <td id="level-value">6/10</td>
+                        </tr>
+                        <tr>
+                            <th>Review in</th>
+                            <td id="review-value">90 minutes</td>
+                        </tr>
+                    </table>
+                </div>
+            </section>
 
-            </div>
+            <table id="mr-table">
+                <tr>
+                    <th>Meaning</th>
+                    <td id="meaning-value">
+                        <ul>
+                            <li>little</li>
+                            <li>small</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Onyomi</th>
+                    <td id="onyomi-value">
+                        <ul>
+                            <li>ショウ</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Kunyomi</th>
+                    <td id="kunyomi-value">
+                        <ul>
+                            <li>ちい.さい</li>
+                            <li>こ-</li>
+                            <li>お-</li>
+                            <li>さ-</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+                <!--
+                <ruby>日本語<rt>にほんご</rt></ruby>
+                -->
+            <hr>
 
-            <div class="words">
 
-            </div>
+            <section id="words">
+                <h1>Words</h1>
+                <table id="words-table">
+                    <tr>
+                        <th><ruby>小人<rt><strong>ショウ</strong>ニン</rt></ruby></th>
+                        <td>child; small person</td>
+                    </tr>
+                    <tr>
+                        <th><ruby>小銭<rt>ショウニン</rt></ruby></th>
+                        <td>small change; coins</td>
+                    </tr>
+                    <tr>
+                        <th><ruby>小人<rt>ショウニン</rt></ruby></th>
+                        <td>testing to see how right-alignment works when text needs to be wrapped</td>
+                    </tr>
+                    <tr>
+                        <th><ruby>小人<rt>ショウニン</rt></ruby></th>
+                        <td>child; small person</td>
+                    </tr>
+                    <tr>
+                        <th><ruby>小人<rt>ショウニン</rt></ruby></th>
+                        <td>child; small person</td>
+                    </tr>
+                    <tr>
+                        <th><ruby>小人<rt>ショウニン</rt></ruby></th>
+                        <td>child; small person</td>
+                    </tr>
+                    <tr>
+                        <th><ruby>小人<rt>ショウニン</rt></ruby></th>
+                        <td>child; small person</td>
+                    </tr>
+                    <tr>
+                        <th><ruby>小人<rt>ショウニン</rt></ruby></th>
+                        <td>child; small person</td>
+                    </tr>
+                    <tr>
+                        <th><ruby>小人<rt>ショウニン</rt></ruby></th>
+                        <td>child; small person</td>
+                    </tr>
+                    <tr>
+                        <th><ruby>小人<rt>ショウにん</rt></ruby></th>
+                        <td>child; small person</td>
+                    </tr>
+                </table>
+            </section>
         </main>
 
         <script src="../js/renderer.js"></script>

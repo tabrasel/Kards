@@ -2,6 +2,8 @@
 
 const { app, BrowserWindow, ipcMain} = require("electron");
 const fs = require("fs");
+const fetch = require('node-fetch');
+var encodeUrl = require('encodeurl')
 
 let mainWindow;
 
@@ -38,13 +40,6 @@ function createWindow() {
     loadDeck("deck.json");
 }
 
-function camelize(str) {
-  return str.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, function(match, index) {
-    if (+match === 0) return "";
-    return index === 0 ? match.toLowerCase() : match.toUpperCase();
-  });
-}
-
 app.on("ready", createWindow);
 
 app.on("window-all-closed", function() {
@@ -52,7 +47,17 @@ app.on("window-all-closed", function() {
 });
 
 ipcMain.on("kanji-data-request", function(event, arg) {
-    let card = {};
-    
-    event.reply("kanji-data-response", card);
+    let url = encodeUrl("https://kanjiapi.dev/v1/kanji/" + arg.kanji); // https://kanjiapi.dev/v1/kanji/%E8%9B%8D
+    let result = {};
+
+    fetch(url)
+        .then(res => res.json())
+        .then(body => {
+            event.reply("kanji-data-response", body);
+            console.log(body);
+        })
+        .catch(err => {
+            event.reply("kanji-data-response", {});
+            console.log(err)
+        });
 });
