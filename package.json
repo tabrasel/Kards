@@ -7,7 +7,7 @@
     "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["flashcards", "kanji"],
+  "keywords": ["flashcards", "kanji", "electron"],
   "author": "tocho",
   "license": "ISC",
   "devDependencies": {

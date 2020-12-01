@@ -51,41 +51,8 @@ app.on("window-all-closed", function() {
     app.quit();
 });
 
-ipcMain.on("card-request", function(event, arg) {
-    let cardFields = deckCards[arg.index].fields;
-
-    let kanji = cardFields[0];
-    let onyomi = cardFields[1].split("、");
-    let kunyomi = cardFields[2].split("、");
-    let nanori = cardFields[3].split("、");
-    let english = cardFields[4].split(", ");
-    let strokeCount = parseInt(cardFields[10]);
-
-    let exampleStrings = cardFields[5].split("<br>");
-    let examples = [];
-    for (let i = 0; i < exampleStrings.length; i++) {
-        let exampleString = exampleStrings[i];
-
-        let example = {
-            "kanji": exampleString.match(/^.*?(?=\()/).pop(),
-            "reading": exampleString.match(/(?<=\().+?(?=\))/).pop(),
-            "english": exampleString.match(/(?<=\: ).*$/).pop()
-        };
-
-        examples.push(example);
-    }
-
-    let card = {
-        "kanji": kanji,
-        "onyomi": onyomi,
-        "kunyomi": kunyomi,
-        "nanori": nanori,
-        "english": english,
-        "strokeCount": strokeCount,
-        "examples": examples
-    };
-
-    console.log(card);
-
-    event.reply("card-response", card);
+ipcMain.on("kanji-data-request", function(event, arg) {
+    let card = {};
+    
+    event.reply("kanji-data-response", card);
 });
