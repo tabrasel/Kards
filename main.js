@@ -47,17 +47,21 @@ app.on("window-all-closed", function() {
 });
 
 ipcMain.on("kanji-data-request", function(event, arg) {
-    let url = encodeUrl("https://kanjiapi.dev/v1/kanji/" + arg.kanji); // https://kanjiapi.dev/v1/kanji/%E8%9B%8D
-    let result = {};
+    // Must encode the URL since it contains a unicode kanji character:
+    // https://kanjiapi.dev/v1/kanji/小
+    // https://kanjiapi.dev/v1/kanji/%E8%9B%8D
+    let url = encodeUrl("https://kanjiapi.dev/v1/kanji/" + arg.kanji);
+
+    // Load kanji learning stats
 
     fetch(url)
-        .then(res => res.json())
-        .then(body => {
-            event.reply("kanji-data-response", body);
-            console.log(body);
+        .then(response => response.json())
+        .then(data => {
+            event.reply("kanji-data-response", data);
+            //console.log(body);
         })
-        .catch(err => {
+        .catch(error => {
             event.reply("kanji-data-response", {});
-            console.log(err)
+            console.log(error)
         });
 });

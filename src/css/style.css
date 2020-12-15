@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
 
 * {
     margin: 0px;
@@ -7,7 +7,7 @@
 
 body {
     background-color: #c2d2b5;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 
 main {
@@ -41,11 +41,36 @@ hr {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 40%;
+    width: 35%;
     color: #8e8e8e;
     padding-top: 40px;
     padding-bottom: 40px;
     font-size: 20px;
+}
+
+#level-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.level-tick {
+    width: 14px;
+    height: 38px;
+    background-color: #DFDFDF;
+    border-radius: 3px;
+}
+
+.filled-tick {
+    background-color: #7E90D1;
+}
+
+#learning-stats p {
+    text-align: right;
+    font-weight: lighter;
+    font-style: italic;
+    font-size: 18px;
 }
 
 #stats-table {
@@ -102,13 +127,16 @@ hr {
 }
 
 #words-table th, #words-table td {
-    font-size: 20px;
-    /*border: 1px solid black;*/git
     vertical-align: top;
 }
 
 #words-table th {
     width: 30%;
+    font-size: 20px;
+}
+
+#words-table td {
+    font-size: 16px;
 }
 
 th {

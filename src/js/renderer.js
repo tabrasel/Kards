@@ -31,8 +31,5 @@ ipcRenderer.on("kanji-data-response", function(event, data) {
         document.getElementById("kunyomi-value").appendChild(kunyomiListItem);
     }
 
-    /*
-    document.getElementById("onyomi-value").innerText = data.on_readings;
-    document.getElementById("kunyomi-value").innerText = data.kun_readings;
-    */
+
 });
