@@ -26,8 +26,8 @@ function loadDeck(deckFileName) {
 
 function createWindow() {
     mainWindow = new BrowserWindow({
-        width: 800,
-        height: 600,
+        width: 960,
+        height: 720,
         minWidth: 800,
         minHeight: 600,
         webPreferences: {
@@ -52,8 +52,6 @@ ipcMain.on("kanji-data-request", function(event, arg) {
     // https://kanjiapi.dev/v1/kanji/%E8%9B%8D
     let url = encodeUrl("https://kanjiapi.dev/v1/kanji/" + arg.kanji);
 
-    // Load kanji learning stats
-
     fetch(url)
         .then(response => response.json())
         .then(data => {
@@ -64,4 +62,29 @@ ipcMain.on("kanji-data-request", function(event, arg) {
             event.reply("kanji-data-response", {});
             console.log(error)
         });
+});
+
+ipcMain.on("kanji-words-request", function(event, arg) {
+    let url = encodeUrl("https://kanjiapi.dev/v1/words/" + arg.kanji);
+
+    // Load kanji learning stats
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            let reply = {
+                kanji: arg.kanji,
+                words: data
+            };
+
+            event.reply("kanji-words-response", reply);
+        })
+        .catch(error => {
+            event.reply("kanji-words-response", {});
+            console.log(error)
+        });
+});
+
+ipcMain.on("kanji-learning-request", function(event, arg) {
+    // Load kanji learning stats
 });
