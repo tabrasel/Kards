@@ -144,16 +144,16 @@ td {
 .word-row {
     display: flex;
     flex-direction: row;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
 }
 
-.word-writing {
-    width: 40%;
+.word-spelling {
+    width: 25%;
     font-size: 22px;
 }
 
 .word-meaning {
-    width: 60%;
+    width: 75%;
 }
 
 ruby {

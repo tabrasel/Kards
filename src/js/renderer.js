@@ -3,11 +3,11 @@
 const { ipcRenderer } = require("electron");
 
 ipcRenderer.send("kanji-data-request", {
-    "kanji": "蛍"
+    "kanji": "図"
 });
 
 ipcRenderer.send("kanji-words-request", {
-    "kanji": "蛍"
+    "kanji": "図"
 });
 
 ipcRenderer.on("kanji-data-response", function(event, data) {
@@ -18,47 +18,40 @@ ipcRenderer.on("kanji-data-response", function(event, data) {
 
     // Populate the English meaning(s)
     for (let i = 0; i < data.meanings.length; i++) {
-        let meaningListItem = document.createElement("li");
+        const meaningListItem = document.createElement("li");
         meaningListItem.innerText = data.meanings[i];
         $("meaning-value").appendChild(meaningListItem);
     }
 
     // Populate the onyomi reading(s)
     for (let i = 0; i < data.on_readings.length; i++) {
-        let onyomiListItem = document.createElement("li");
+        const onyomiListItem = document.createElement("li");
         onyomiListItem.innerText = data.on_readings[i];
         $("onyomi-value").appendChild(onyomiListItem);
     }
 
     // Populate the kunyomi reading(s)
     for (let i = 0; i < data.kun_readings.length; i++) {
-        let kunyomiListItem = document.createElement("li");
+        const kunyomiListItem = document.createElement("li");
         kunyomiListItem.innerText = data.kun_readings[i];
         $("kunyomi-value").appendChild(kunyomiListItem);
     }
 });
 
 ipcRenderer.on("kanji-words-response", function(event, data) {
-    let wordsList = $("words-table");
-    let words = prioritizeWords(data.words, data.kanji);
+    const wordsList = $("words-table");
+    const words = prioritizeWords(data.words, data.kanji);
 
     for (let i = 0; i < 10; i++) {
-        let word = words[i];
+        const word = words[i];
 
-        let wordWritingDiv = createWordWritingElement(word);
-        let wordMeaningDiv = createWordMeaningElement(word);
+        const wordSpellingDiv = createWordSpellingElement(word);
+        const wordMeaningDiv = createWordMeaningElement(word);
 
-        /*
-        <tr>
-            <th><ruby>小銭<rt>ショウニン</rt></ruby></th>
-            <td>small change; coins</td>
-        </tr>
-        */
-
-        let wordRowDiv = document.createElement("div");
+        const wordRowDiv = document.createElement("div");
         wordRowDiv.classList.add("word-row");
 
-        wordRowDiv.appendChild(wordWritingDiv);
+        wordRowDiv.appendChild(wordSpellingDiv);
         wordRowDiv.appendChild(wordMeaningDiv);
 
         wordsList.appendChild(wordRowDiv);
@@ -74,29 +67,39 @@ function prioritizeWords(words, kanji) {
 /**
  * Create a writing element for a vocab word entry.
  */
-function createWordWritingElement(word) {
-    let wordWritingP = document.createElement("p");
-    wordWritingP.innerText = word.variants[0].written;
+function createWordSpellingElement(word) {
+    //<p><ruby>小銭<rt>ショウニン</rt></ruby></p>
+    console.log(word);
 
-    let wordWritingDiv = document.createElement("div");
-    wordWritingDiv.classList.add("word-writing");
-    wordWritingDiv.appendChild(wordWritingP);
+    const wordSpellingRt = document.createElement("rt");
+    wordSpellingRt.innerText = word.variants[0].pronounced;
 
-    return wordWritingDiv;
+    const wordSpellingRuby = document.createElement("ruby");
+    wordSpellingRuby.innerText = word.variants[0].written;
+    wordSpellingRuby.appendChild(wordSpellingRt);
+
+    const wordSpellingP = document.createElement("p");
+    wordSpellingP.appendChild(wordSpellingRuby);
+
+    const wordSpellingDiv = document.createElement("div");
+    wordSpellingDiv.classList.add("word-spelling");
+    wordSpellingDiv.appendChild(wordSpellingP);
+
+    return wordSpellingDiv;
 }
 
 /**
  * Create a meaning(s) element for a vocab word entry.
  */
 function createWordMeaningElement(word) {
-    let wordMeaningDiv = document.createElement("div");
+    const wordMeaningDiv = document.createElement("div");
     wordMeaningDiv.classList.add("word-meaning");
 
     // Enumerate meanings if there are more than one
     if (word.meanings.length > 1) {
         for (let j = 0; j < word.meanings.length; j++) {
-            let meaning = word.meanings[j];
-            let meaningP = document.createElement("p");
+            const meaning = word.meanings[j];
+            const meaningP = document.createElement("p");
 
             meaningP.innerText = "(" + (j + 1) + ") " + meaning.glosses[0];
 
@@ -109,8 +112,8 @@ function createWordMeaningElement(word) {
             wordMeaningDiv.appendChild(meaningP);
         }
     } else {
-        let meaning = word.meanings[0];
-        let meaningP = document.createElement("p");
+        const meaning = word.meanings[0];
+        const meaningP = document.createElement("p");
 
         meaningP.innerText = meaning.glosses[0];
 
@@ -126,6 +129,10 @@ function createWordMeaningElement(word) {
     return wordMeaningDiv;
 }
 
+/**
+ *
+ * Source: https://kai.kanjiapi.dev/ (index.js)
+ */
 function compareWords(word1, word2, kanji) {
     const score1 = scoreWord(word1, kanji);
     const score2 = scoreWord(word2, kanji);
