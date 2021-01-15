@@ -56,7 +56,6 @@ ipcMain.on("kanji-data-request", function(event, arg) {
         .then(response => response.json())
         .then(data => {
             event.reply("kanji-data-response", data);
-            //console.log(body);
         })
         .catch(error => {
             event.reply("kanji-data-response", {});
@@ -65,14 +64,12 @@ ipcMain.on("kanji-data-request", function(event, arg) {
 });
 
 ipcMain.on("kanji-words-request", function(event, arg) {
-    let url = encodeUrl("https://kanjiapi.dev/v1/words/" + arg.kanji);
-
-    // Load kanji learning stats
+    const url = encodeUrl("https://kanjiapi.dev/v1/words/" + arg.kanji);
 
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            let reply = {
+            const reply = {
                 kanji: arg.kanji,
                 words: data
             };
@@ -85,6 +82,11 @@ ipcMain.on("kanji-words-request", function(event, arg) {
         });
 });
 
-ipcMain.on("kanji-learning-request", function(event, arg) {
-    // Load kanji learning stats
+ipcMain.on("kanji-status-request", function(event, arg) {
+    const studyStatusFile = fs.readFileSync("data/saves/user1.json");
+    const studyStatus = JSON.parse(studyStatusFile);
+    
+    const reply = studyStatus[arg.kanji];
+
+    event.reply("kanji-status-response", reply);
 });

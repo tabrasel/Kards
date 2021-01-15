@@ -1,13 +1,18 @@
 "use strict";
 
 const { ipcRenderer } = require("electron");
+const moment = require('moment');
 
 ipcRenderer.send("kanji-data-request", {
-    "kanji": "図"
+    "kanji": "一"
 });
 
 ipcRenderer.send("kanji-words-request", {
-    "kanji": "図"
+    "kanji": "一"
+});
+
+ipcRenderer.send("kanji-status-request", {
+    "kanji": "一"
 });
 
 ipcRenderer.on("kanji-data-response", function(event, data) {
@@ -58,6 +63,40 @@ ipcRenderer.on("kanji-words-response", function(event, data) {
     }
 });
 
+/**
+ *
+ */
+ipcRenderer.on("kanji-status-response", function(event, kanjiStatus) {
+    // Display the level bar
+    const levelBar = $("level-bar");
+    levelBar.innerHTML = "";
+
+    let i = 0;
+    for (let level = 0; level < 10; level++) {
+        const levelTickDiv = document.createElement("div");
+        levelTickDiv.classList.add("level-tick");
+
+        if (i < kanjiStatus.level) {
+            levelTickDiv.classList.add("filled-tick");
+            i++;
+        }
+
+        levelBar.appendChild(levelTickDiv);
+    }
+
+    alert(kanjiStatus.level);
+    alert(kanjiStatus.nextReviewTime);
+
+    // Display time until next review
+    if (kanjiStatus.nextStudyTime != null) {
+        const nextReviewTime = moment(kanjiStatus.nextStudyTime);
+        const timeToNextReview = nextReviewTime.fromNow();
+
+        const nextReviewTimeSpan = $("next-review-time");
+        nextReviewTimeSpan.innerText = timeToNextReview;
+    }
+});
+
 function prioritizeWords(words, kanji) {
     const prioritizedWords = JSON.parse(JSON.stringify(words));
     prioritizedWords.sort((a, b) => compareWords(a, b, kanji));
@@ -69,7 +108,6 @@ function prioritizeWords(words, kanji) {
  */
 function createWordSpellingElement(word) {
     //<p><ruby>小銭<rt>ショウニン</rt></ruby></p>
-    console.log(word);
 
     const wordSpellingRt = document.createElement("rt");
     wordSpellingRt.innerText = word.variants[0].pronounced;
