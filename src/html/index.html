@@ -11,72 +11,306 @@
 
     </head>
     <body>
-        <!--
-        <nav>
-            <button id="quiz-tab-button" class="nav-tab" type="button" name="button">Quiz</button>
-            <button id="study-tab-button" class="nav-tab" type="button" name="button">Study</button>
-        </nav>
-        -->
+        <header>
+            <nav>
+                <button id="quiz-tab-button" class="mode-tab">Quiz</button>
+                <button id="study-tab-button" class="mode-tab">Study</button>
+            </nav>
+        </header>
 
         <main>
-            <section id="char-and-stats">
-                <!-- Large kanji image -->
-                <div id="char-div">
-                    <p id="kanji-char">...</p>
-                </div>
+            <!-- <section id="quiz-tab-content" class="tab-content"></section> -->
 
-                <!-- Section for kanji learning level and general statistics -->
-                <div id="stats-div">
-                    <div id="study-stats">
-                        <div id="level-bar"></div>
-                        <p>Review <span id="next-review-time"></span></p>
-                    </div>
+            <section id="study-tab-content" class="tab-content">
+                <section id="kanji-gallery">
+                    <p>@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
 
-                    <table id="stats-table">
+                    * {
+                        margin: 0px;
+                        padding: 0px;
+                    }
+
+                    body {
+                        background-color: #c2d2b5;
+                        font-family: "Roboto", sans-serif;
+                    }
+
+                    header {
+                        width: 1200px;
+                        height: 50px;
+                        margin: auto;
+                        padding-top: 10px;
+                        padding-left: 20px;
+                        background-color: #2F2F2F;
+                    }
+
+                    nav {
+                        overflow: hidden;
+                    }
+
+                    nav button.mode-tab {
+                        width: 200px;
+                        height: 50px;
+                        margin: 0px;
+                        padding: 0px;
+                        background-color: inherit;
+                        float: left;
+                        border: none;
+                        border-top-left-radius: 15px;
+                        border-top-right-radius: 15px;
+                        outline: none;
+                        cursor: pointer;
+                        font-size: 20px;
+                        color: White;
+                    }
+
+                    nav button:hover.mode-tab {
+                        background-color: #4A4A4A;
+                    }
+
+                    nav button:active.mode-tab {
+                        background-color: White;
+                        color: Black;
+                    }
+
+                    .tab-content {
+                        /* display: none; */
+                    }
+
+                    main {
+                        width: 1200px;
+                        margin: auto;
+                        padding: 0px 0px;
+                        background-color: White;
+                        /* box-shadow: #A2AE99 0px 0px 15px; */
+                    }
+
+                    hr {
+                        margin-top: 10px;
+                        margin-bottom: 30px;
+                        border-top: 1px solid #8e8e8e;
+                        border-bottom: none;
+                    }
+
+                    #study-tab-content {
+                        display: flex;
+                        flex-direction: row;
+                        background-color: White;
+                    }
+
+                    #kanji-galley {
+                        width: 400px;
+                        height: 600px;
+                        display: flex;
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                        justify-content: space-between;
+                        overflow: scroll;
+                    }
+
+                    .kanji-gallery-thumbnail {
+                        width: 80px;
+                        font-size: 32px;
+                    }
+
+                    #kanji-page {
+                        padding: 0px 80px;
+                        background-color: white;
+                    }
+
+                    #char-and-stats {
+                        width: 100%;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                    }
+
+                    #char-div {
+                        font-size: 175px;
+                        vertical-align: text-top;
+                    }
+
+                    #stats-div {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        width: 35%;
+                        color: #8e8e8e;
+                        padding-top: 50px;
+                        padding-bottom: 40px;
+                        font-size: 20px;
+                    }
+
+                    #level-bar {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        margin-bottom: 6px;
+                    }
+
+                    .level-tick {
+                        width: 14px;
+                        height: 36px;
+                        background-color: #DFDFDF;
+                        border-radius: 3px;
+                    }
+
+                    .filled-tick {
+                        background-color: #7E90D1;
+                    }
+
+                    #study-stats p {
+                        text-align: right;
+                        font-weight: lighter;
+                        font-style: italic;
+                        font-size: 16px;
+                    }
+
+                    #stats-table {
+                        width: 100%;
+                    }
+
+                    #meanings-readings-table {
+                        width: 100%;
+                        border-collapse: separate;
+                        border-spacing: 0px 15px;
+                        color: #8e8e8e;
+                        font-size: 20px;
+                    }
+
+                    #meanings-readings-table th {
+                        text-align: left;
+                        vertical-align: top;
+                    }
+
+                    #meanings-readings-table td {
+                        vertical-align: top;
+                    }
+
+                    #meanings-readings-table ul {
+                        list-style: none;
+                        color: black;
+                    }
+
+                    #meanings-readings-table li {
+                        display: inline-block;
+                        margin-left: 6px;
+                        margin-bottom: 6px;
+                        padding: 6px;
+                        border-radius: 12px;
+                    }
+
+                    #meaning-value li {
+                        background-color: #FFEBA5;
+                    }
+
+                    #onyomi-value li {
+                        background-color: #FFCAC7;
+                    }
+
+                    #kunyomi-value li {
+                        background-color: #B8E5FF;
+                    }
+
+                    #words h1 {
+                        margin-bottom: 20px;
+                        text-align: center;
+                        font-size: 20px;
+                        color: #8e8e8e;
+                    }
+
+                    #stats-table th {
+                        text-align: left;
+                    }
+
+                    td {
+                        text-align: right;
+                    }
+
+                    .word-row {
+                        display: flex;
+                        flex-direction: row;
+                        margin-bottom: 20px;
+                    }
+
+                    .word-spelling {
+                        width: 25%;
+                        font-size: 22px;
+                    }
+
+                    .word-meaning {
+                        width: 75%;
+                    }
+
+                    ruby {
+                        font-weight: normal;
+                    }
+</p>
+                </section>
+
+                <section id="kanji-page">
+                    <section id="char-and-stats">
+                        <!-- Large kanji image -->
+                        <div id="char-div">
+                            <p id="kanji-char">...</p>
+                        </div>
+
+                        <!-- Section for kanji learning level and general statistics -->
+                        <div id="stats-div">
+                            <div id="study-stats">
+                                <div id="level-bar"></div>
+                                <p>Review <span id="next-review-time"></span></p>
+                            </div>
+
+                            <table id="stats-table">
+                                <tr>
+                                    <th>Grade</th>
+                                    <td id="grade-value">...</td>
+                                </tr>
+                                <tr>
+                                    <th>JLPT</th>
+                                    <td id="jlpt-value">...</td>
+                                </tr>
+                                <tr>
+                                    <th>Strokes</th>
+                                    <td id="strokes-value">...</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- Section for kanji meaning and readings -->
+                    <table id="meanings-readings-table">
                         <tr>
-                            <th>Grade</th>
-                            <td id="grade-value">...</td>
+                            <th>Meaning</th>
+                            <td>
+                                <ul id="meaning-value"></ul>
+                            </td>
                         </tr>
                         <tr>
-                            <th>JLPT</th>
-                            <td id="jlpt-value">...</td>
+                            <th>Onyomi</th>
+                            <td>
+                                <ul id="onyomi-value"></ul>
+                            </td>
                         </tr>
                         <tr>
-                            <th>Strokes</th>
-                            <td id="strokes-value">...</td>
+                            <th>Kunyomi</th>
+                            <td>
+                                <ul id="kunyomi-value"></ul>
+                            </td>
                         </tr>
                     </table>
-                </div>
+
+                    <hr>
+
+                    <section id="words">
+                        <h1>Vocab Words</h1>
+                        <table id="words-table"></table>
+                    </section>
+                </section>
+
             </section>
 
-            <!-- Section for kanji meaning and readings -->
-            <table id="meanings-readings-table">
-                <tr>
-                    <th>Meaning</th>
-                    <td>
-                        <ul id="meaning-value"></ul>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Onyomi</th>
-                    <td>
-                        <ul id="onyomi-value"></ul>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Kunyomi</th>
-                    <td>
-                        <ul id="kunyomi-value"></ul>
-                    </td>
-                </tr>
-            </table>
-
-            <hr>
-
-            <section id="words">
-                <h1>Vocab Words</h1>
-                <table id="words-table"></table>
-            </section>
         </main>
 
         <script src="../js/renderer.js"></script>

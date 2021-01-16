@@ -4,15 +4,15 @@ const { ipcRenderer } = require("electron");
 const moment = require('moment');
 
 ipcRenderer.send("kanji-data-request", {
-    "kanji": "一"
+    "kanji": "小"
 });
 
 ipcRenderer.send("kanji-words-request", {
-    "kanji": "一"
+    "kanji": "小"
 });
 
 ipcRenderer.send("kanji-status-request", {
-    "kanji": "一"
+    "kanji": "小"
 });
 
 ipcRenderer.on("kanji-data-response", function(event, data) {

@@ -26,8 +26,8 @@ function loadDeck(deckFileName) {
 
 function createWindow() {
     mainWindow = new BrowserWindow({
-        width: 960,
-        height: 720,
+        width: 1280,
+        height: 760,
         minWidth: 800,
         minHeight: 600,
         webPreferences: {
