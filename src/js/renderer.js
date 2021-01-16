@@ -66,7 +66,7 @@ ipcRenderer.on("kanji-words-response", function(event, data) {
 /**
  *
  */
-ipcRenderer.on("kanji-status-response", function(event, kanjiStatus) {
+ipcRenderer.on("kanji-status-response", function(event, status) {
     // Display the level bar
     const levelBar = $("level-bar");
     levelBar.innerHTML = "";
@@ -76,7 +76,7 @@ ipcRenderer.on("kanji-status-response", function(event, kanjiStatus) {
         const levelTickDiv = document.createElement("div");
         levelTickDiv.classList.add("level-tick");
 
-        if (i < kanjiStatus.level) {
+        if (i < status.level) {
             levelTickDiv.classList.add("filled-tick");
             i++;
         }
@@ -84,12 +84,9 @@ ipcRenderer.on("kanji-status-response", function(event, kanjiStatus) {
         levelBar.appendChild(levelTickDiv);
     }
 
-    alert(kanjiStatus.level);
-    alert(kanjiStatus.nextReviewTime);
-
     // Display time until next review
-    if (kanjiStatus.nextStudyTime != null) {
-        const nextReviewTime = moment(kanjiStatus.nextStudyTime);
+    if (status.nextStudyTime != null) {
+        const nextReviewTime = moment(status.nextStudyTime);
         const timeToNextReview = nextReviewTime.fromNow();
 
         const nextReviewTimeSpan = $("next-review-time");

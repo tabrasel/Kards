@@ -83,10 +83,9 @@ ipcMain.on("kanji-words-request", function(event, arg) {
 });
 
 ipcMain.on("kanji-status-request", function(event, arg) {
-    const studyStatusFile = fs.readFileSync("data/saves/user1.json");
-    const studyStatus = JSON.parse(studyStatusFile);
-    
-    const reply = studyStatus[arg.kanji];
+    const userSaveFile = fs.readFileSync("data/saves/user1.json");
+    const userSave = JSON.parse(userSaveFile);
+    const status = userSave.kanjiStatus[arg.kanji];
 
-    event.reply("kanji-status-response", reply);
+    event.reply("kanji-status-response", status);
 });

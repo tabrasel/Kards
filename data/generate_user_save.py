@@ -1,27 +1,41 @@
-# Use: python3 generate_user_save.py [username]
+# Use intructions:
+# > cd data/
+# > python3 generate_user_save.py [username]
 
 import json
 import sys
 
+username = sys.argv[1]
+
 inputFile = open('kanji_jouyou.txt', 'r')
-outputFile = sys.argv[1] + '.json'
+outputFile = username + '.json'
 outputFilePath = 'saves/' + outputFile
 
-kanjiData = {}
+# Generate learning status for each kanji
+kanjiStatus = {}
 
 for line in inputFile:
-    if len(line.strip()) == 0 or line.startswith('#'):
+    line = line.strip()
+
+    if len(line) == 0 or line.startswith('#'):
         continue
 
-    characters = line.strip().split(' ')
+    kanjis = line.split(' ')
 
-    for character in characters:
-        data = {
+    for kanji in kanjis:
+        status = {
             'level' : -1,
             'nextReviewTime' : None
         }
 
-        kanjiData[character] = data;
+        kanjiStatus[kanji] = status;
+
+# Generate save file object
+saveData = {
+    'username' : username,
+    'learnedKanjiCount' : 0,
+    'kanjiStatus' : kanjiStatus
+}
 
 with open(outputFilePath, 'w', encoding = 'utf-8') as f:
-    f.write(json.dumps(kanjiData, ensure_ascii = False, indent = 4))
+    f.write(json.dumps(saveData, ensure_ascii = False, indent = 4))
