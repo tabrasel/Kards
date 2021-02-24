@@ -31,7 +31,7 @@ nav button.mode-tab {
     margin-top: 0px;
     margin-bottom: 0px;
     padding: 0px;
-    background-color: inherit;
+    background-color: #4A4A4A;
     float: left;
     border: none;
     border-top-left-radius: 15px;
@@ -85,13 +85,25 @@ hr {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
+    align-content: flex-start;
     overflow: scroll;
 }
 
 .kanji-gallery-thumbnail {
-    width: 80px;
-    font-size: 32px;
+    width: 90px;
+    height: 110px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font-size: 52px;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    background-color: White;
+    transition: 0.2s;
+}
+
+.kanji-gallery-thumbnail:hover {
+    background-color: #EEEEEE;
 }
 
 #kanji-page {

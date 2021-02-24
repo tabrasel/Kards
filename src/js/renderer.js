@@ -3,6 +3,9 @@
 const { ipcRenderer } = require("electron");
 const moment = require('moment');
 
+/**
+ * Activate quiz mode.
+ */
 $("quiz-tab-button").onclick = function() {
     // Ignore if quiz mode is already active
     if ($("quiz-tab-button").className.includes("active")) return;
@@ -14,6 +17,9 @@ $("quiz-tab-button").onclick = function() {
     $("quiz-tab-button").className += " active";
 };
 
+/**
+ * Activate study mode.
+ */
 $("study-tab-button").onclick = function() {
     // Ignore if study mode is already active
     if ($("study-tab-button").className.includes("active")) return;
@@ -23,7 +29,35 @@ $("study-tab-button").onclick = function() {
     // Activate study mode
     $("study-tab-content").style.display = "flex";
     $("study-tab-button").className += " active";
+
+    // Populate kanji gallery
+    const userSave = ipcRenderer.sendSync("user-save-request", {});
+    const allKanjiChars = Object.keys(userSave.kanjiStatus);
+
+    for (let i = 0; i < userSave.learnedKanjiCount; i++) {
+        const kanjiChar = allKanjiChars[i];
+        const kanjiStatus = userSave.kanjiStatus[kanjiChar];
+
+        const kanjiThumbnailP = document.createElement("p");
+        kanjiThumbnailP.innerText = kanjiChar;
+
+        const kanjiThumbnailDiv = document.createElement("div");
+        kanjiThumbnailDiv.classList.add("kanji-gallery-thumbnail");
+
+        kanjiThumbnailDiv.onclick = function() {
+
+        };
+
+        kanjiThumbnailDiv.appendChild(kanjiThumbnailP);
+
+        $("kanji-gallery").appendChild(kanjiThumbnailDiv);
+    }
+
 };
+
+function populateKanjiPage() {
+
+}
 
 function deactivateAllModes() {
     // Deactive mode tab elements
