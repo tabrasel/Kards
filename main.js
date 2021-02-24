@@ -90,3 +90,10 @@ ipcMain.on("kanji-status-request", function(event, arg) {
 
     event.reply("kanji-status-response", status);
 });
+
+ipcMain.on("user-save-request", function(event, arg) {
+    const userSaveFile = fs.readFileSync("data/saves/user1.json");
+    const userSave = JSON.parse(userSaveFile);
+
+    event.returnValue = userSave;
+});
