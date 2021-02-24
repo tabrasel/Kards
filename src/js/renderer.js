@@ -3,17 +3,43 @@
 const { ipcRenderer } = require("electron");
 const moment = require('moment');
 
-ipcRenderer.send("kanji-data-request", {
-    "kanji": "一"
-});
+$("quiz-tab-button").onclick = function() {
+    // Ignore if quiz mode is already active
+    if ($("quiz-tab-button").className.includes("active")) return;
 
-ipcRenderer.send("kanji-words-request", {
-    "kanji": "一"
-});
+    deactivateAllModes();
 
-ipcRenderer.send("kanji-status-request", {
-    "kanji": "一"
-});
+    // Activate quiz mode
+    $("quiz-tab-content").style.display = "block";
+    $("quiz-tab-button").className += " active";
+};
+
+$("study-tab-button").onclick = function() {
+    // Ignore if study mode is already active
+    if ($("study-tab-button").className.includes("active")) return;
+
+    deactivateAllModes();
+
+    // Activate study mode
+    $("study-tab-content").style.display = "flex";
+    $("study-tab-button").className += " active";
+};
+
+function deactivateAllModes() {
+    // Deactive mode tab elements
+    const modeTabElements = document.getElementsByClassName("mode-tab");
+    for (let i = 0; i < modeTabElements.length; i++) {
+        const modeTabElement = modeTabElements[i];
+        modeTabElement.className = modeTabElement.className.replace(" active", "");
+    }
+
+    // Deactivate mode content elements
+    const modeContentElements = document.getElementsByClassName("tab-content");
+    for (let i = 0; i < modeContentElements.length; i++) {
+        const modeContentElement = modeContentElements[i];
+        modeContentElement.style.display = "none";
+    }
+}
 
 ipcRenderer.on("kanji-data-response", function(event, data) {
     $("kanji-char").innerText = data.kanji;
@@ -239,3 +265,18 @@ function isPriorityVariant(variant) {
 function $(id) {
     return document.getElementById(id);
 }
+
+// Debug setup
+ipcRenderer.send("kanji-data-request", {
+    "kanji": "小"
+});
+
+ipcRenderer.send("kanji-words-request", {
+    "kanji": "小"
+});
+
+ipcRenderer.send("kanji-status-request", {
+    "kanji": "小"
+});
+
+$("study-tab-button").click();
